@@ -41,6 +41,10 @@ def get_data():
                 src1 = req1.text
                 soup1 = BeautifulSoup(src1, 'lxml')
 
+                # print(len(soup1.find('div', class_='pages').find('ul', class_='items pages-items').find_all('a', class_='action next')))
+                if len(soup1.find('div', class_='pages').find('ul', class_='items pages-items').find_all('a', class_='action next')) == 0:
+                    next_page = False
+
                 name_and_id_product = []
                 cards = soup1.find_all('li', class_='item product product-item')
                 # len_cards = len(cards)
