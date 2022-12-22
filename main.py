@@ -4,7 +4,6 @@ import schedule
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-
 url = 'https://www.komfort.kz/dir/'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 YaBrowser/22.11.3.818 Yowser/2.5 Safari/537.36"
@@ -28,7 +27,7 @@ def get_data():
     del catalogs_dict[-5]
 
     try:
-        #Сбор всех карточек товарами из каждого каталога
+        # Сбор всех карточек товарами из каждого каталога
         all_dict_cards = [["Название", "Код товара", "Цена"]]
         count_catalog = 0
         for url1 in catalogs_dict:
@@ -95,13 +94,16 @@ def get_data():
                     name_and_id_product[num_card_page].append(price_product.replace('\xa0', ''))
 
                     # print(name_and_id_product[num_card_page])
+                    # print(len(name_and_id_product[num_card_page]))
                     if name_and_id_product[num_card_page] in all_dict_cards:
                         count_cards_in_page += 1
-                        next_page = False
+                        name_and_id_product.remove(name_and_id_product[num_card_page])
+                        # next_page = False
 
-                    all_dict_cards.append(name_and_id_product[num_card_page])
-                    num_card_page += 1
-                    count_cards_in_page += 1
+                    else:
+                        all_dict_cards.append(name_and_id_product[num_card_page])
+                        num_card_page += 1
+                        count_cards_in_page += 1
 
                 # print(count_cards_in_page)
                 if max_count_cards_in_page == count_cards_in_page:
@@ -181,6 +183,6 @@ def main():
     spent_time = finish_time - start_time
     print(spent_time)
 
-    
+
 if __name__ == '__main__':
     main()
