@@ -1,8 +1,8 @@
 import ast
-import datetime
 import requests
 import schedule
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 
 url = 'https://www.komfort.kz/dir/'
@@ -98,7 +98,6 @@ def get_data():
                     if name_and_id_product[num_card_page] in all_dict_cards:
                         count_cards_in_page += 1
                         next_page = False
-                        continue
 
                     all_dict_cards.append(name_and_id_product[num_card_page])
                     num_card_page += 1
@@ -171,17 +170,16 @@ def google_table(dict_cards):
 
 
 def main():
-    # start_time = datetime.datetime.now()
+    start_time = datetime.now()
 
-    # get_data()
     schedule.every(35).minutes.do(get_data)
 
     while True:
         schedule.run_pending()
 
-    # finish_time = datetime.datetime.now()
-    # spent_time = finish_time - start_time
-    # print(spent_time)
+    finish_time = datetime.now()
+    spent_time = finish_time - start_time
+    print(spent_time)
 
     
 if __name__ == '__main__':
