@@ -152,7 +152,7 @@ def google_table(dict_cards):
 
     # mail bot 'parsers@parsers-372008.iam.gserviceaccount.com'
     SAMPLE_SPREADSHEET_ID = '107SdHe8_dV6npe_dKE-7xA2QJgxz6ZOywOy-GZyrZX0'
-    SAMPLE_RANGE_NAME = 'komfort.kz'
+    SAMPLE_RANGE_NAME = 'komfort.kz!A1:C'
 
     try:
         service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
