@@ -41,9 +41,9 @@ def get_data():
                 src1 = req1.text
                 soup1 = BeautifulSoup(src1, 'lxml')
 
-                # print(len(soup1.find('div', class_='pages').find('ul', class_='items pages-items').find_all('a', class_='action next')))
-                if len(soup1.find('div', class_='pages').find('ul', class_='items pages-items').find_all('a', class_='action next')) == 0:
+                if len(soup1.find('div', class_='pages').find('ul', class_='items pages-items').find_all('li', class_='item pages-item-next disabled')) == 1:
                     next_page = False
+                # print(len(soup1.find('div', class_='pages').find('ul', class_='items pages-items').find_all('li', class_='item pages-item-next disabled')))
 
                 name_and_id_product = []
                 cards = soup1.find_all('li', class_='item product product-item')
@@ -179,7 +179,6 @@ def main():
     start_time = datetime.now()
 
     schedule.every(35).minutes.do(get_data)
-
     while True:
         schedule.run_pending()
 
